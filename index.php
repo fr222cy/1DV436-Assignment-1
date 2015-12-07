@@ -7,8 +7,9 @@ require_once("mail.php");
 
 
 $login = new Login();
-$render = new Render();
 $mail = new Mail();
+$render = new Render($mail);
+
 
 
 
@@ -16,14 +17,24 @@ $client_id = '116794636592-6q3c6c35kepmhh4avaq9kmitj2b1phi4.apps.googleuserconte
 $client_secret = 'Raep3Xf79xzetZeaDlV5keLl';
 
 $client = $login->authenticate($client_id, $client_secret);
-   
-if(isset($client))
+
+
+
+if(isset($client) && isset($_GET))
 {
 
-    $mail->connect($client);
+    $mails = $mail->getMails($client);
     
+    foreach($mails as $oneMail)
+    {
+        echo $oneMail->getSubject();
+        echo $oneMail->getSnippet();
+        echo $oneMail->getMailRecived();
+    }
     
-    //$render->renderMap();  
+  
+    
+    $render->renderMap($mails);  
  
 }
 
