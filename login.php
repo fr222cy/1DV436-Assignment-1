@@ -39,10 +39,16 @@ class login
       $client->setAccessToken($_SESSION['access_token']);
       return $client;
     } 
+    else if($client->isAccessTokenExpired()) 
+    {
+      $authUrl = $client->createAuthUrl();
+      header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+    }
     else 
     {
       $authUrl = $client->createAuthUrl();
     }
+    
     echo '<div style="margin:20px">';
     
     if (isset($authUrl))

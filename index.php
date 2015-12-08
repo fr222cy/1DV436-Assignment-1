@@ -8,34 +8,20 @@ require_once("mail.php");
 
 $login = new Login();
 $mail = new Mail();
-$render = new Render($mail);
 
-
-
-
-$client_id = '116794636592-6q3c6c35kepmhh4avaq9kmitj2b1phi4.apps.googleusercontent.com'; 
-$client_secret = 'Raep3Xf79xzetZeaDlV5keLl';
+$client_id = '580340564051-6am9ad6fljr3u52q9l8ep0hj43cchlpp.apps.googleusercontent.com'; 
+$client_secret = 'XHn5YEFKa1BJHTCsEgBFftwH';
 
 $client = $login->authenticate($client_id, $client_secret);
 
-
-
-if(isset($client) && isset($_GET))
+if(isset($client))
 {
-
-    $mails = $mail->getMails($client);
+    $mail->getMails($client);
     
-    foreach($mails as $oneMail)
-    {
-        echo $oneMail->getSubject();
-        echo $oneMail->getSnippet();
-        echo $oneMail->getMailRecived();
-    }
+    $render = new Render($mail);
+    $render->renderMap();  
+    unset($_SESSION['access_token']);
     
-  
-    
-    $render->renderMap($mails);  
- 
 }
 
 

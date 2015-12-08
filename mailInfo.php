@@ -17,19 +17,20 @@ class Mailinfo
     public function getSnippet()
     {
         
-        $snippetString = "<p>". $this->message->snippet ."...</p>";
+        $snippetString = "'". $this->message->snippet ."...<br>'";
         
         return $snippetString;
     }
     
-    public function getCoordsToJS()
+    public function getLocation()
     {
-        
+        return "'".$this->location."'";
     }
     
     public function getSubject()
     {
-       $subjectString = "<p>". $this->message->getPayLoad()->getHeaders()[16]->value ."</p>";
+       // I use substr in this case to trim "FRW:"
+       $subjectString = "'<h3>". substr($this->message->getPayLoad()->getHeaders()[16]->value ."<h3>'", 4);
        
        return $subjectString;
     }
