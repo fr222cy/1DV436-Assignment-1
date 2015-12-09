@@ -58,7 +58,6 @@ class Mail
            /* Using Geocoding to get the Location of the email
             * https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple 
             
-              
             */
             //Adds 400 milliseconds to the timer each loop.
             $timer += 400;

@@ -10,6 +10,8 @@ class render
         $this->mail = $mail;
     }
     
+   
+    
     public function renderMap()
     {
         echo  '<!DOCTYPE html>

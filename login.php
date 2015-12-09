@@ -24,7 +24,7 @@ class login
     $client->setClientSecret($client_secret);
     $client->setRedirectUri($redirect_uri);
     $client->addScope(SCOPES);
-
+    
     if (isset($_GET['code'])) 
     {
       $client->authenticate($_GET['code']);
@@ -49,17 +49,9 @@ class login
       $authUrl = $client->createAuthUrl();
     }
     
-    echo '<div style="margin:20px">';
     
-    if (isset($authUrl))
-    { 
-    //show login url
-    echo '<div align="center">';
-    echo '<h3>Login with Google -- Demo</h3>';
-    echo '<div>Please click login button to connect to Google.</div>';
-    echo '<a class="login" href="' . $authUrl . '"><img src="images/google-login-button.png" /></a>';
-    echo '</div>';
-    }
+    
+    
    
    
     
